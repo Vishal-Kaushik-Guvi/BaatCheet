@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>BaatCheet | Logged Out</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-700 via-gray-900 to-black">
+
+<div class="bg-white/10 backdrop-blur-xl p-10 rounded-2xl shadow-2xl text-center text-white">
+    <h1 class="text-3xl font-bold mb-4">You’ve logged out 👋</h1>
+    <p class="text-gray-300 mb-6">
+        Thanks for chatting on BaatCheet.  
+        We hope to see you again soon!
+    </p>
+
+    <a th:href="@{/signin}"
+       class="inline-block px-6 py-3 rounded-xl bg-white text-gray-800 font-semibold hover:bg-gray-200 transition">
+        Sign In Again
+    </a>
+</div>
+
+</body>
+</html>
