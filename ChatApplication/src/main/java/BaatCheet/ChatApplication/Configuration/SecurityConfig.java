@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -16,12 +18,12 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
-            // CSRF disabled for WebSocket compatibility
             .csrf(csrf -> csrf.disable())
+
             .authorizeHttpRequests(auth -> auth
                     .requestMatchers(
                             "/signup",
-                            "/login",
+                            "/signin",
                             "/css/**",
                             "/js/**",
                             "/images/**",
@@ -30,23 +32,19 @@ public class SecurityConfig {
                     .anyRequest().authenticated()
             )
 
-            // Login configuration
             .formLogin(login -> login
-                    .loginPage("/login")
+                    .loginPage("/signin")
                     .defaultSuccessUrl("/chat", true)
                     .permitAll()
             )
 
-            // Logout configuration
             .logout(logout -> logout
-                    .logoutUrl("/logout")
-                    .logoutSuccessUrl("/login?logout")
+                    .logoutUrl("/signout")
+                    .logoutSuccessUrl("/signin?signout")
                     .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID")
-              
+                    .deleteCookies("JSESSIONID")
             )
 
-            // Allow same-origin frames (useful for dev tools)
             .headers(headers ->
                     headers.frameOptions(frame -> frame.sameOrigin())
             );
@@ -59,4 +57,10 @@ public class SecurityConfig {
             AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 }
+

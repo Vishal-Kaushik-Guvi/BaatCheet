@@ -4,91 +4,132 @@
     <meta charset="UTF-8">
     <title>BaatCheet | Chat</title>
 
-    <!-- Tailwind CDN -->
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.3);
+            border-radius: 10px;
+        }
+    </style>
 </head>
 
-<body class="bg-gray-100 h-screen flex flex-col">
+<body class="h-screen flex flex-col
+             bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600">
 
 <!-- 🔝 Header -->
-<header class="bg-indigo-600 text-white p-4 flex justify-between items-center shadow">
-    <h1 class="text-xl font-semibold">💬 BaatCheet</h1>
+<header class="flex items-center justify-between px-6 py-4
+               bg-white/10 backdrop-blur-xl border-b border-white/20
+               text-white shadow-lg">
 
-    <div class="flex items-center gap-4">
-        <span class="font-medium" th:text="${username}">username</span>
-        <a href="/logout" class="text-sm underline">Logout</a>
+    <h1 class="text-2xl font-extrabold tracking-wide">
+        💬 BaatCheet
+    </h1>
+
+    <div class="flex items-center gap-4 text-sm">
+        <span class="font-semibold" th:text="${username}">username</span>
+        <a href="/logout"
+           class="underline hover:text-gray-200 transition">
+            Logout
+        </a>
     </div>
 </header>
 
-<!-- 🧱 Chat Area -->
-<main class="flex-1 overflow-y-auto p-4 space-y-4" id="chatArea">
+<!-- 💬 Chat Area -->
+<main id="chatArea"
+      class="flex-1 overflow-y-auto px-6 py-4 space-y-4">
 
-    <!-- 🔵 Incoming Message -->
-    <div class="flex items-start gap-2">
-        <div class="bg-white p-3 rounded-lg shadow max-w-xs">
-            <p class="text-sm text-gray-700">Hello! Welcome to BaatCheet 👋</p>
-            <span class="text-xs text-gray-400 block text-right mt-1">10:00 AM</span>
+    <!-- Incoming -->
+    <div class="flex items-start">
+        <div class="bg-white/20 backdrop-blur-lg text-white
+                    p-4 rounded-2xl shadow-xl max-w-md">
+            <p class="text-sm">
+                Hello! Welcome to BaatCheet 👋
+            </p>
+            <span class="text-xs text-gray-200 block text-right mt-1">
+                10:00 AM
+            </span>
         </div>
     </div>
 
-    <!-- 🟢 Outgoing Message -->
-    <div class="flex items-start justify-end gap-2">
-        <div class="bg-indigo-600 text-white p-3 rounded-lg shadow max-w-xs relative">
+    <!-- Outgoing -->
+    <div class="flex items-start justify-end">
+        <div class="relative bg-indigo-700/90 text-white
+                    p-4 rounded-2xl shadow-xl max-w-md">
 
-            <!-- ⋮ Menu -->
-            <button class="absolute top-1 right-1 text-white">
+            <!-- Menu -->
+            <button class="absolute top-2 right-2 opacity-70 hover:opacity-100">
                 <i data-feather="more-vertical" class="w-4 h-4"></i>
             </button>
 
-            <p class="text-sm">This UI looks amazing already 😄</p>
-            <span class="text-xs text-indigo-200 block text-right mt-1">10:01 AM</span>
+            <p class="text-sm">
+                This UI finally feels premium 😍
+            </p>
+            <span class="text-xs text-indigo-200 block text-right mt-1">
+                10:01 AM
+            </span>
         </div>
     </div>
 
-    <!-- 🖼️ Image Message -->
-    <div class="flex items-start gap-2">
-        <div class="bg-white p-2 rounded-lg shadow max-w-xs">
-            <img src="https://via.placeholder.com/200" class="rounded-lg mb-1">
-            <span class="text-xs text-gray-400 block text-right">10:02 AM</span>
+    <!-- Image -->
+    <div class="flex items-start">
+        <div class="bg-white/20 backdrop-blur-lg
+                    p-2 rounded-2xl shadow-xl max-w-xs">
+            <img src="https://via.placeholder.com/220"
+                 class="rounded-xl mb-1">
+            <span class="text-xs text-gray-200 block text-right">
+                10:02 AM
+            </span>
         </div>
     </div>
 
-    <!-- 🎤 Audio Message -->
-    <div class="flex items-start justify-end gap-2">
-        <div class="bg-indigo-600 p-3 rounded-lg shadow max-w-xs text-white">
+    <!-- Audio -->
+    <div class="flex items-start justify-end">
+        <div class="bg-indigo-700/90 p-3 rounded-2xl shadow-xl max-w-xs text-white">
             <audio controls class="w-full">
                 <source src="#" type="audio/mpeg">
             </audio>
-            <span class="text-xs text-indigo-200 block text-right mt-1">10:03 AM</span>
+            <span class="text-xs text-indigo-200 block text-right mt-1">
+                10:03 AM
+            </span>
         </div>
     </div>
 
 </main>
 
 <!-- ✍️ Input Area -->
-<footer class="bg-white p-4 border-t flex items-center gap-3">
+<footer class="px-6 py-4
+               bg-white/10 backdrop-blur-xl
+               border-t border-white/20 flex items-center gap-3">
 
     <!-- Upload -->
-    <label class="cursor-pointer">
-        <i data-feather="paperclip" class="w-5 h-5 text-gray-500"></i>
+    <label class="cursor-pointer text-white opacity-80 hover:opacity-100">
+        <i data-feather="paperclip" class="w-5 h-5"></i>
         <input type="file" class="hidden">
     </label>
 
-    <!-- Message Input -->
+    <!-- Input -->
     <input
-            id="messageInput"
-            type="text"
-            placeholder="Type a message..."
-            class="flex-1 border rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        id="messageInput"
+        type="text"
+        placeholder="Type your message..."
+        class="flex-1 px-5 py-3 rounded-full
+               bg-white/20 text-white placeholder-gray-200
+               focus:outline-none focus:ring-2 focus:ring-white transition"
     >
 
     <!-- Send -->
-    <button>
-            id="sendBtn"
-            class="bg-indigo-600 text-white p-2 rounded-full hover:bg-indigo-700">
+    <button id="sendBtn"
+            class="bg-white text-indigo-700
+                   p-3 rounded-full hover:bg-gray-200
+                   active:scale-95 transition">
         <i data-feather="send" class="w-5 h-5"></i>
     </button>
 

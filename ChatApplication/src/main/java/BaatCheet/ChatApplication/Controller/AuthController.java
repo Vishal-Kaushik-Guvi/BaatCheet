@@ -40,7 +40,14 @@ public class AuthController {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
 
-        return "redirect:/login?success";
+        return "redirect:/signin?success";
+    }
+
+        @GetMapping("/signout")
+    public String signOutPage() {
+        // Spring Security intercepts this URL
+        // and performs logout automatically
+        return "redirect:/signin?signout";
     }
 }
 
